@@ -8,6 +8,9 @@ $headerUser = [
     'role' => 'Admin'     // Untuk header
 ];
 
+// Set halaman aktif (harus sama dengan key pada header.php)
+$currentPage = 'data-item';
+
 // Data default untuk form Item
 $itemData = [
     'item_id' => 'ITM-00123',
@@ -28,7 +31,7 @@ $itemData = [
     ]
 ];
 
-// Dummy data untuk tabel (kamu bisa ganti ke DB nanti)
+// Dummy data untuk tabel
 $itemList = [
     [
         'id' => 'ITM-00123',
@@ -45,7 +48,6 @@ $itemList = [
         'kategori' => 'Expenses'
     ]
 ];
-
 // -----------------------------------------------------------
 ?>
 <!DOCTYPE html>
@@ -53,45 +55,18 @@ $itemList = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Data Item | Logistix</title>
-    
+    <title>Data Item | Logistix</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        :root {
-            --primary-color: #4e73df;
-            --sidebar-bg: #2c3e50;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .sidebar-custom {
-            width: 16rem;
-            background-color: var(--sidebar-bg);
-            padding: 1rem 0;
-            min-height: 100vh;
-            position: fixed; 
-            top: 0;
-            left: 0;
-            z-index: 20;
-        }
-
-        .sidebar-link.active {
-            background-color: #4f46e5;
-            color: #ffffff;
-            font-weight: 600;
-        }
-        .sidebar-link:not(.active):hover {
-            background-color: #334155;
-        }
+        body { font-family: 'Inter', sans-serif; }
 
         .main-content-wrapper {
             margin-left: 16rem;
-            flex-grow: 1; 
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             width: calc(100% - 16rem);
@@ -101,34 +76,31 @@ $itemList = [
 </head>
 
 <body class="bg-slate-100">
-    
-    <?php 
-        $currentPage = 'item-data.php'; 
-        include 'partials/sidebar.php'; 
-    ?> 
 
-    <div class="main-content-wrapper"> 
-        
+    <?php include 'partials/sidebar.php'; ?>
+
+    <div class="main-content-wrapper">
+
         <?php include 'partials/header.php'; ?>
 
         <main class="p-8 flex-1">
-            
+
             <div id="item-data-page" class="page-content">
-                
+
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-bold text-slate-800">Master Data Item</h2> 
-                    
+                    <h2 class="text-2xl font-bold text-slate-800">Master Data Item</h2>
+
                     <button id="openModalAdd" class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
                         Tambah Item
                     </button>
                 </div>
-                
+
                 <div class="bg-white p-8 rounded-xl shadow-md">
                     <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
+
                         <div>
                             <label class="block text-sm font-medium text-slate-700">No. ID Item</label>
-                            <input type="text" value="<?php echo $itemData['item_id']; ?>" 
+                            <input type="text" value="<?= $itemData['item_id']; ?>" 
                             class="mt-1 block w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-md shadow-sm" readonly>
                         </div>
 
@@ -136,7 +108,7 @@ $itemList = [
                             <label class="block text-sm font-medium text-slate-700">Nama Item</label>
                             <input type="text" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                         </div>
-                        
+
                         <div>
                             <label class="block text-sm font-medium text-slate-700">Barcode Produk</label>
                             <input type="text" class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
@@ -151,7 +123,7 @@ $itemList = [
                             <label class="block text-sm font-medium text-slate-700">Group</label>
                             <select class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                                 <?php foreach ($itemData['group_options'] as $option => $sel): ?>
-                                    <option <?php echo $sel; ?>><?php echo $option; ?></option>
+                                    <option <?= $sel; ?>><?= $option; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -160,7 +132,7 @@ $itemList = [
                             <label class="block text-sm font-medium text-slate-700">Class</label>
                             <select class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                                 <?php foreach ($itemData['class_options'] as $option => $sel): ?>
-                                    <option <?php echo $sel; ?>><?php echo $option; ?></option>
+                                    <option <?= $sel; ?>><?= $option; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -169,7 +141,7 @@ $itemList = [
                             <label class="block text-sm font-medium text-slate-700">Kategori</label>
                             <select class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                                 <?php foreach ($itemData['category_options'] as $option => $sel): ?>
-                                    <option <?php echo $sel; ?>><?php echo $option; ?></option>
+                                    <option <?= $sel; ?>><?= $option; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -179,13 +151,11 @@ $itemList = [
                                 Simpan Item
                             </button>
                         </div>
+
                     </form>
                 </div>
 
-                <!-- ============================ -->
-                <!-- TABEL DATA ITEM TERSIMPAN -->
-                <!-- ============================ -->
-
+                <!-- Tabel data item -->
                 <div class="bg-white p-8 rounded-xl shadow-md mt-8">
                     <h3 class="text-xl font-bold text-slate-800 mb-4">Data Item Tersimpan</h3>
 
@@ -206,12 +176,12 @@ $itemList = [
                             <tbody class="bg-white">
                                 <?php $no = 1; foreach ($itemList as $item): ?>
                                 <tr class="border-b hover:bg-slate-100">
-                                    <td class="px-4 py-2 text-sm"><?php echo $no++; ?></td>
-                                    <td class="px-4 py-2 text-sm"><?php echo $item['id']; ?></td>
-                                    <td class="px-4 py-2 text-sm"><?php echo $item['nama']; ?></td>
-                                    <td class="px-4 py-2 text-sm"><?php echo $item['group']; ?></td>
-                                    <td class="px-4 py-2 text-sm"><?php echo $item['class']; ?></td>
-                                    <td class="px-4 py-2 text-sm"><?php echo $item['kategori']; ?></td>
+                                    <td class="px-4 py-2 text-sm"><?= $no++; ?></td>
+                                    <td class="px-4 py-2 text-sm"><?= $item['id']; ?></td>
+                                    <td class="px-4 py-2 text-sm"><?= $item['nama']; ?></td>
+                                    <td class="px-4 py-2 text-sm"><?= $item['group']; ?></td>
+                                    <td class="px-4 py-2 text-sm"><?= $item['class']; ?></td>
+                                    <td class="px-4 py-2 text-sm"><?= $item['kategori']; ?></td>
                                     <td class="px-4 py-2 text-sm">
                                         <button class="text-indigo-600 font-semibold">Edit</button>
                                         <button class="ml-3 text-red-600 font-semibold">Hapus</button>
@@ -225,15 +195,16 @@ $itemList = [
                 </div>
 
             </div>
+
         </main>
     </div>
 
 
-    <!-- MODAL TAMBAH ITEM -->
+    <!-- Modal -->
     <div id="modalAddItem" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center z-50">
         <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-6">
             <h3 class="text-xl font-semibold text-slate-800 mb-4">Tambah Item Baru</h3>
-            
+
             <form class="grid grid-cols-1 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-slate-700">Nama Item</label>

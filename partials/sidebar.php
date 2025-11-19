@@ -48,7 +48,7 @@ function getMenuIcon($name) {
 
         <a href="data_item.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'item-data.php' ? 'active' : '') ?>">
+           <?= ($currentPage == 'data-item' ? 'active' : '') ?>">
            <span class="icon mr-2"><?= getMenuIcon('item') ?></span> Data Item
         </a>
 

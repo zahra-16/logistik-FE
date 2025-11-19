@@ -2,10 +2,10 @@
 // data_vendor.php
 
 // -----------------------------------------------------------
-// Variabel Data Dummy 
+// USER LOGIN (Dummy)
 $headerUser = [
     'name' => 'John Doe',
-    'role' => 'Admin'   
+    'role' => 'Admin'
 ];
 
 // Data default untuk form Vendor
@@ -20,11 +20,11 @@ $vendorData = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Data Vendor | Logistix</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         body { font-family: 'Inter', sans-serif; }
 
@@ -39,68 +39,50 @@ $vendorData = [
 
         .custom-scrollbar-hide::-webkit-scrollbar { display: none; }
         .custom-scrollbar-hide {
-            -ms-overflow-style: none;  
-            scrollbar-width: none;  
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
         .main-content-wrapper {
-            margin-left: 16rem; 
+            margin-left: 16rem;
             width: calc(100% - 16rem);
             min-height: 100vh;
         }
     </style>
 </head>
-<body class="bg-slate-100"> 
+<body class="bg-slate-100">
 
-    <!-- Sidebar DIPANGGIL DARI FILE LUAR -->
+    <!-- Sidebar -->
     <?php 
-        $currentPage = 'data_vendor.php'; 
+        $currentPage = 'data_vendor.php';
         include 'partials/sidebar.php';
     ?>
 
-    <div class="main-content-wrapper"> 
-        
-        <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10 h-20"> 
-            <div class="flex justify-between items-center h-full px-8">
-                <h1 class="text-xl font-semibold text-slate-900">Master Vendor</h1>
-                
-                <div class="flex items-center space-x-6">
-                    <div class="relative">
-                        <input type="text" placeholder="Cari..." class="py-2 pl-4 pr-10 border border-slate-300 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm w-48">
-                        <i class="fas fa-search absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400"></i>
-                    </div>
-                    
-                    <div class="flex items-center space-x-2 cursor-pointer">
-                        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white font-semibold text-sm">
-                            JD
-                        </div>
-                        <div class="text-right">
-                            <p class="text-sm font-medium text-slate-700 leading-none"><?= htmlspecialchars($headerUser['name']); ?></p>
-                            <p class="text-xs text-slate-500"><?= htmlspecialchars($headerUser['role']); ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <div class="main-content-wrapper">
 
+        <!-- HEADER BARU (AUTO-TITLE + SEARCH + USER AVATAR) -->
+        <?php include 'partials/header.php'; ?>
 
-        <!-- ====== HALAMAN VENDOR (TIDAK DIUBAH SAMA SEKALI) ====== -->
+        <!-- ========================= HALAMAN VENDOR ========================= -->
         <main class="p-8 flex-1">
+
             <div id="vendor-data-page" class="page-content">
-                
+
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-slate-800">Master Data Vendor</h2>
-                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">Tambah Vendor</button>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">
+                        Tambah Vendor
+                    </button>
                 </div>
-                
+
                 <div class="bg-white p-8 rounded-xl shadow-md">
                     <form class="space-y-6">
 
-                        <!-- FORM VENDOR TIDAK DIUTAK ATIK -->
+                        <!-- FORM VENDOR -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div>
                                 <label class="block text-sm font-medium text-slate-700">No. Vendor</label>
-                                <input type="text" class="mt-1 block w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-md" 
+                                <input type="text" class="mt-1 block w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-md"
                                 value="<?= htmlspecialchars($vendorData['id']); ?>" readonly>
                             </div>
                             <div>
@@ -110,7 +92,9 @@ $vendorData = [
                             <div>
                                 <label class="block text-sm font-medium text-slate-700">Badan Usaha</label>
                                 <select class="mt-1 block w-full px-3 py-2 border border-slate-300 rounded-md bg-white">
-                                    <option>PT</option><option>CV</option><option>Individual</option>
+                                    <option>PT</option>
+                                    <option>CV</option>
+                                    <option>Individual</option>
                                 </select>
                             </div>
                         </div>
@@ -162,17 +146,18 @@ $vendorData = [
                         </div>
 
                         <div class="pt-4 text-right">
-                             <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700">Simpan Vendor</button>
+                             <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700">
+                                Simpan Vendor
+                             </button>
                         </div>
 
                     </form>
                 </div>
 
-                <!-- Tabel vendor tetap -->
+                <!-- TABEL VENDOR -->
                 <div class="bg-white p-8 rounded-xl shadow-md mt-8">
                     <h3 class="text-xl font-semibold text-slate-700 mb-4">Data Vendor Tersimpan</h3>
 
-                    <!-- Search & display option -->
                     <div class="flex justify-between items-center mb-4">
                         <input type="text" placeholder="Cari Kode atau Nama Vendor..." class="py-2 px-3 border border-slate-300 rounded-md w-64">
                         <select class="py-2 px-3 border border-slate-300 rounded-md">

@@ -4,7 +4,7 @@
 // -----------------------------------------------------------
 // Variabel Data Dummy
 $headerUser = [
-    'name' => 'John Doe', 
+    'name' => 'John Doe',
     'role' => 'Admin'
 ];
 
@@ -20,7 +20,7 @@ $divisions = [
     ['id' => 'DIV-SC-01', 'department_id' => 'DEPT-02', 'department_name' => 'Supply Chain Management', 'name' => 'Procurement', 'description' => 'Unit pengadaan barang dan jasa.', 'status' => 'Aktif'],
 ];
 
-// Set halaman aktif untuk sidebar
+// Set halaman aktif untuk sidebar & header
 $currentPage = 'departemen_divisi.php';
 // -----------------------------------------------------------
 ?>
@@ -33,12 +33,11 @@ $currentPage = 'departemen_divisi.php';
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
         :root { --primary-color: #4e73df; --sidebar-bg: #2c3e50; }
         body { font-family: 'Inter', sans-serif; }
-
         .custom-scrollbar-hide::-webkit-scrollbar { display: none; }
         .custom-scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -54,29 +53,10 @@ $currentPage = 'departemen_divisi.php';
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
 
-    <div class="main-content-wrapper"> 
-        
-        <!-- HEADER -->
-        <header class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-10 h-20"> 
-            <div class="flex justify-between items-center h-full px-8">
-                <h1 class="text-xl font-semibold text-slate-900">Departemen & Divisi</h1>
-                
-                <div class="flex items-center space-x-6">
-                    <div class="relative">
-                        <input type="text" placeholder="Cari..." class="py-2 pl-4 pr-10 border border-slate-300 rounded-lg focus:ring-indigo-500 w-48 text-sm">
-                        <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    </div>
-                    
-                    <div class="flex items-center space-x-2 cursor-pointer">
-                        <div class="w-10 h-10 rounded-full bg-indigo-500 flex items-center justify-center text-white font-semibold text-sm">JD</div>
-                        <div class="text-right">
-                            <p class="text-sm font-medium text-slate-700 leading-none"><?= $headerUser['name']; ?></p>
-                            <p class="text-xs text-slate-500"><?= $headerUser['role']; ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+    <div class="main-content-wrapper">
+
+        <!-- HEADER (Diganti Include) -->
+        <?php include 'partials/header.php'; ?>
 
         <!-- MAIN CONTENT -->
         <main class="p-8 flex-1">
@@ -118,7 +98,6 @@ $currentPage = 'departemen_divisi.php';
             <div class="bg-white rounded-xl shadow-md p-8 mt-8">
                 <h3 class="text-xl font-semibold text-slate-700 mb-4">Data Departemen</h3>
 
-                <!-- Search & Dropdown -->
                 <div class="flex justify-between items-center mb-4">
                     <input type="text" placeholder="Cari Departemen..." class="py-2 px-3 border border-slate-300 rounded-md w-64">
                     <select class="py-2 px-3 border border-slate-300 rounded-md">
@@ -155,16 +134,6 @@ $currentPage = 'departemen_divisi.php';
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                </div>
-
-                <div class="mt-4 flex justify-between items-center text-sm text-slate-600">
-                    <div>Menampilkan 1 sampai 10 dari 10 data</div>
-                    <div class="space-x-1">
-                        <button class="px-3 py-1 border border-slate-300 rounded-md">Sebelumnya</button>
-                        <button class="px-3 py-1 border border-indigo-600 bg-indigo-600 text-white rounded-md">1</button>
-                        <button class="px-3 py-1 border border-slate-300 rounded-md">2</button>
-                        <button class="px-3 py-1 border border-slate-300 rounded-md">Selanjutnya</button>
-                    </div>
                 </div>
             </div>
 
@@ -210,15 +179,6 @@ $currentPage = 'departemen_divisi.php';
                     </table>
                 </div>
 
-                <div class="mt-4 flex justify-between items-center text-sm text-slate-600">
-                    <div>Menampilkan 1 sampai 10 dari 10 data</div>
-                    <div class="space-x-1">
-                        <button class="px-3 py-1 border border-slate-300 rounded-md">Sebelumnya</button>
-                        <button class="px-3 py-1 border border-indigo-600 bg-indigo-600 text-white rounded-md">1</button>
-                        <button class="px-3 py-1 border border-slate-300 rounded-md">2</button>
-                        <button class="px-3 py-1 border border-slate-300 rounded-md">Selanjutnya</button>
-                    </div>
-                </div>
             </div>
 
         </main>
