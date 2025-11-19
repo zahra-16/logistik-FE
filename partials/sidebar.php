@@ -48,26 +48,26 @@ function getMenuIcon($name) {
 
         <a href="data_item.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'data_item' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('item') ?></span> Data Item
+           <?= ($currentPage == 'item-data.php' ? 'active' : '') ?>">
+           <span class="icon mr-2"><?= getMenuIcon('item') ?></span> Data Item
         </a>
 
         <a href="data_gudang.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'data_gudang' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('warehouse') ?></span> Data Gudang
+           <?= ($currentPage == 'data_gudang.php' ? 'active' : '') ?>">
+           <span class="icon mr-2"><?= getMenuIcon('warehouse') ?></span> Data Gudang
         </a>
 
         <a href="departemen_divisi.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'departemen_divisi' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('department') ?></span> Departemen & Divisi
+           <?= ($currentPage == 'departemen_divisi.php' ? 'active' : '') ?>">
+           <span class="icon mr-2"><?= getMenuIcon('department') ?></span> Departemen & Divisi
         </a>
 
         <a href="data_vendor.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'data_vendor' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('vendor') ?></span> Data Vendor
+           <?= ($currentPage == 'data_vendor.php' ? 'active' : '') ?>">
+           <span class="icon mr-2"><?= getMenuIcon('vendor') ?></span> Data Vendor
         </a>
 
         <!-- PENGADAAN -->
@@ -76,25 +76,25 @@ function getMenuIcon($name) {
         <a href="purchase_request.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
            <?= ($currentPage == 'purchase_request' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('pr_form') ?></span> Purchase Request (PR)
+           <span class="icon mr-2"><?= getMenuIcon('pr_form') ?></span> Purchase Request (PR)
         </a>
 
         <a href="persetujuan_pr.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
            <?= ($currentPage == 'persetujuan_pr' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('approval') ?></span> Persetujuan PR
+           <span class="icon mr-2"><?= getMenuIcon('approval') ?></span> Persetujuan PR
         </a>
 
         <a href="proses_bidding_pr.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'proses_bidding_pr' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('bidding') ?></span> Proses Bidding PR
+           <?= ($currentPage == 'pr-bidding-page' ? 'active' : '') ?>">
+           <span class="icon mr-2"><?= getMenuIcon('bidding') ?></span> Proses Bidding PR
         </a>
 
         <a href="pembuatan_po.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
            <?= ($currentPage == 'pembuatan_po' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('po_creation') ?></span> Pembuatan PO
+           <span class="icon mr-2"><?= getMenuIcon('po_creation') ?></span> Pembuatan PO
         </a>
 
         <!-- PENERIMAAN -->
@@ -102,8 +102,8 @@ function getMenuIcon($name) {
 
         <a href="goods_receipt.php" 
            class="sidebar-link flex items-center pl-6 pr-4 py-2 rounded-lg text-sm transition duration-150 
-           <?= ($currentPage == 'goods_receipt' ? 'active' : '') ?>">
-           <span class="text-indigo-300 mr-2"><?= getMenuIcon('goods_receipt') ?></span> Goods Receipt (GR)
+           <?= ($currentPage == 'goods-receipt-page' ? 'active' : '') ?>">
+           <span class="icon mr-2"><?= getMenuIcon('goods_receipt') ?></span> Goods Receipt (GR)
         </a>
 
     </nav>
@@ -125,7 +125,13 @@ function getMenuIcon($name) {
         color: #fff !important;
     }
 
-    /* Active — Biru gelap */
+    /* Biar ikon & span ikut putih saat hover */
+    .sidebar-link:hover span.icon,
+    .sidebar-link:hover i {
+        color: #fff !important;
+    }
+
+    /* Active — Biru Gelap */
     .sidebar-link.active {
         background: #4338ca !important; /* indigo-700 */
         color: #fff !important;
